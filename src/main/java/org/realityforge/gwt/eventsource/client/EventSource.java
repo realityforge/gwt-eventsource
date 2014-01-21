@@ -4,7 +4,6 @@ import com.google.gwt.core.shared.GWT;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.realityforge.gwt.eventsource.client.event.CloseEvent;
 import org.realityforge.gwt.eventsource.client.event.ErrorEvent;
 import org.realityforge.gwt.eventsource.client.event.MessageEvent;
@@ -17,6 +16,7 @@ public abstract class EventSource
   {
     EventSource newEventSource();
   }
+
   // ready state
   public enum ReadyState
   {
@@ -101,11 +101,9 @@ public abstract class EventSource
   /**
    * Fire a Close event.
    */
-  protected final void onClose( final boolean wasClean,
-                                final int code,
-                                @Nullable final String reason )
+  protected final void onClose()
   {
-    _eventBus.fireEventFromSource( new CloseEvent( this, wasClean, code, reason ), this );
+    _eventBus.fireEventFromSource( new CloseEvent( this ), this );
   }
 
   /**
