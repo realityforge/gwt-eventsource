@@ -2,7 +2,6 @@ package org.realityforge.gwt.eventsource.client.event;
 
 import com.google.gwt.event.shared.EventHandler;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.realityforge.gwt.eventsource.client.EventSource;
 import org.realityforge.gwt.eventsource.client.event.CloseEvent.Handler;
 
@@ -12,18 +11,6 @@ import org.realityforge.gwt.eventsource.client.event.CloseEvent.Handler;
 public class CloseEvent
   extends EventSourceEvent<Handler>
 {
-  public static final int CLOSE_NORMAL = 1000;
-  public static final int CLOSE_GOING_AWAY = 1001;
-  public static final int CLOSE_PROTOCOL_ERROR = 1002;
-  public static final int CLOSE_UNSUPPORTED = 1003;
-  public static final int CLOSE_NO_STATUS = 1005;
-  public static final int CLOSE_ABNORMAL = 1006;
-  public static final int CLOSE_INCONSISTENT_DATA = 1007;
-  public static final int CLOSE_VIOLATES_POLICY = 1008;
-  public static final int CLOSE_TOO_LARGE = 1009;
-  public static final int CLOSE_EXTENSION_UNAVAILABLE = 1010;
-  public static final int CLOSE_UNEXPECTED_CONDITION = 1011;
-
   public interface Handler
     extends EventHandler
   {
@@ -37,35 +24,9 @@ public class CloseEvent
     return TYPE;
   }
 
-  private final boolean _wasClean;
-  private final int _code;
-  private final String _reason;
-
-  public CloseEvent( @Nonnull final EventSource eventSource,
-                     final boolean wasClean,
-                     final int code,
-                     @Nullable final String reason )
+  public CloseEvent( @Nonnull final EventSource eventSource )
   {
     super( eventSource );
-    _wasClean = wasClean;
-    _code = code;
-    _reason = reason;
-  }
-
-  public boolean wasClean()
-  {
-    return _wasClean;
-  }
-
-  public int getCode()
-  {
-    return _code;
-  }
-
-  @Nullable
-  public String getReason()
-  {
-    return _reason;
   }
 
   @Override
