@@ -1,0 +1,28 @@
+<module>
+  <source path="client"/>
+
+  <inherits name='com.google.web.bindery.event.Event'/>
+  <inherits name='com.google.gwt.core.Core'/>
+
+  <!-- Define the eventSource support property -->
+  <define-property name="eventSourceSupport" values="maybe,no"/>
+
+  <!-- Set the default to maybe -->
+  <set-property name="eventSource" value="maybe"/>
+
+  <!-- Older browsers do not support Storage -->
+  <set-property name="eventSource" value="no">
+    <any>
+      <when-property-is name="user.agent" value="ie6"/>
+      <when-property-is name="user.agent" value="ie7"/>
+      <when-property-is name="user.agent" value="ie8"/>
+      <when-property-is name="user.agent" value="ie9"/>
+      <when-property-is name="user.agent" value="ie10"/>
+    </any>
+  </set-property>
+
+  <replace-with class="org.realityforge.gwt.eventsource.client.EventSource.NoSupportDetector">
+    <when-type-is class="org.realityforge.gwt.eventsource.client.EventSource.SupportDetector"/>
+    <when-property-is name="eventSource" value="no"/>
+  </replace-with>
+</module>
