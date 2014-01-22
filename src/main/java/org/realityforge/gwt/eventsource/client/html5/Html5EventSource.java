@@ -36,6 +36,7 @@ public class Html5EventSource
     checkConnected();
     _eventSource.close();
     _eventSource = null;
+    onClose();
   }
 
   @Override
