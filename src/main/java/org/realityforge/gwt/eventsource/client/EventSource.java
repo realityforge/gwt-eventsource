@@ -29,12 +29,20 @@ public abstract class EventSource
 
   public static EventSource newEventSourceIfSupported()
   {
-    if ( null == g_factory && GWT.isClient() && getSupportDetector().isSupported() )
+    if ( null == g_factory && isSupported() )
     {
       register( getSupportDetector().newFactory() );
       return g_factory.newEventSource();
     }
     return ( null != g_factory ) ? g_factory.newEventSource() : null;
+  }
+
+  /**
+   * @return true if newEventSourceIfSupported() will return a non-null value, false otherwise.
+   */
+  public static boolean isSupported()
+  {
+    return ( null != g_factory ) || GWT.isClient() && getSupportDetector().isSupported();
   }
 
   public static void register( @Nonnull final Factory factory )
