@@ -8,10 +8,10 @@
   <define-property name="eventSourceSupport" values="maybe,no"/>
 
   <!-- Set the default to maybe -->
-  <set-property name="eventSource" value="maybe"/>
+  <set-property name="eventSourceSupport" value="maybe"/>
 
   <!-- Older browsers do not support Storage -->
-  <set-property name="eventSource" value="no">
+  <set-property name="eventSourceSupport" value="no">
     <any>
       <when-property-is name="user.agent" value="ie6"/>
       <when-property-is name="user.agent" value="ie7"/>
@@ -23,6 +23,6 @@
 
   <replace-with class="org.realityforge.gwt.eventsource.client.EventSource.NoSupportDetector">
     <when-type-is class="org.realityforge.gwt.eventsource.client.EventSource.SupportDetector"/>
-    <when-property-is name="eventSource" value="no"/>
+    <when-property-is name="eventSourceSupport" value="no"/>
   </replace-with>
 </module>
