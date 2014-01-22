@@ -34,6 +34,11 @@ public class Html5EventSource
   public void close()
   {
     checkConnected();
+    doClose();
+  }
+
+  private void doClose()
+  {
     _eventSource.close();
     _eventSource = null;
     onClose();
@@ -79,7 +84,7 @@ public class Html5EventSource
                              if ( eventSource.readyState == EventSource.CLOSED )
                              {
                                // Connection was closed.
-                               client.@org.realityforge.gwt.eventsource.client.EventSource::onClose()();
+                               client.@org.realityforge.gwt.eventsource.client.html5.Html5EventSource::doClose()();
                              }
                              else
                              {
