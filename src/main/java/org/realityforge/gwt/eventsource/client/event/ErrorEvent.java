@@ -17,7 +17,7 @@ public class ErrorEvent
     void onErrorEvent( @Nonnull ErrorEvent event );
   }
 
-  private static final Type<Handler> TYPE = new Type<Handler>();
+  private static final Type<Handler> TYPE = new Type<>();
 
   public static Type<Handler> getType()
   {
