@@ -75,7 +75,7 @@ public class Html5EventSource
                           } );
       eventSource.onerror = $entry( function ()
                            {
-                             if ( e.readyState == EventSource.CLOSED )
+                             if ( eventSource.readyState == EventSource.CLOSED )
                              {
                                // Connection was closed.
                                client.@org.realityforge.gwt.eventsource.client.EventSource::onClose()();
