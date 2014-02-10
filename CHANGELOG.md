@@ -1,3 +1,7 @@
+## 0.3:
+
+* Restore JDK 6 compatibility.
+
 ## 0.2:
 
 * Support EventSource.isSupported() method that will return true if EventSource.newEventSourceIfSupported()

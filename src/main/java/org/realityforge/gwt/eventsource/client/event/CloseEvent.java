@@ -17,7 +17,7 @@ public class CloseEvent
     void onCloseEvent( @Nonnull CloseEvent event );
   }
 
-  private static final Type<Handler> TYPE = new Type<>();
+  private static final Type<Handler> TYPE = new Type<Handler>();
 
   public static Type<Handler> getType()
   {
