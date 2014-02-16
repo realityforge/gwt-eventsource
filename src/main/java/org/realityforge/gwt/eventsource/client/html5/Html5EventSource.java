@@ -46,13 +46,13 @@ public class Html5EventSource
   }
 
   @Override
-  public void connect( @Nonnull final String url )
+  public void open( @Nonnull final String url, final boolean withCredentials )
   {
     if ( null != _eventSource )
     {
       throw new IllegalStateException( "EventSource already connected" );
     }
-    _eventSource = EventSourceImpl.create( this, url );
+    _eventSource = EventSourceImpl.create( this, url, withCredentials );
   }
 
   @Override
@@ -84,9 +84,8 @@ public class Html5EventSource
   private final static class EventSourceImpl
     extends JavaScriptObject
   {
-    static native EventSourceImpl create( EventSource client, String url )
-    /*-{
-      var eventSource = new EventSource( url );
+    static native EventSourceImpl create( EventSource client, String url, boolean withCredentials ) /*-{
+      var eventSource = new EventSource( url, {withCredentials: withCredentials} );
       eventSource.onopen = $entry( function ()
                           {
                             client.@org.realityforge.gwt.eventsource.client.EventSource::onOpen()();

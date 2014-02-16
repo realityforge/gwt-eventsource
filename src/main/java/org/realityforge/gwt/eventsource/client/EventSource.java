@@ -69,7 +69,12 @@ public abstract class EventSource
     _eventBus = eventBus;
   }
 
-  public abstract void connect( @Nonnull String url );
+  public final void open( @Nonnull final String url )
+  {
+    open( url, false );
+  }
+
+  public abstract void open( @Nonnull String url, boolean withCredentials );
 
   public abstract void close();
 

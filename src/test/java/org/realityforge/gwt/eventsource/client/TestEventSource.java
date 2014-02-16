@@ -24,7 +24,7 @@ final class TestEventSource
   }
 
   @Override
-  public void connect( @Nonnull final String server )
+  public void open( @Nonnull final String url, final boolean withCredentials )
   {
   }
 
