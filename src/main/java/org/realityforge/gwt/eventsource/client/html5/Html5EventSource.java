@@ -88,7 +88,7 @@ public class Html5EventSource
   {
     if ( null == _eventSource )
     {
-      throw new IllegalStateException( "EventSource not connected" );
+      throw new IllegalStateException( "EventSource not open" );
     }
   }
 
