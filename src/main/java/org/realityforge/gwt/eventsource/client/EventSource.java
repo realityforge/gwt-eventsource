@@ -4,6 +4,7 @@ import com.google.gwt.core.shared.GWT;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.realityforge.gwt.eventsource.client.event.CloseEvent;
 import org.realityforge.gwt.eventsource.client.event.ErrorEvent;
 import org.realityforge.gwt.eventsource.client.event.MessageEvent;
@@ -71,6 +72,13 @@ public abstract class EventSource
   public abstract void connect( @Nonnull String url );
 
   public abstract void close();
+
+  @Nonnull
+  public abstract String getURL()
+    throws IllegalStateException;
+
+  public abstract boolean getWithCredentials()
+    throws IllegalStateException;
 
   public abstract ReadyState getReadyState();
 

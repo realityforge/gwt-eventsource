@@ -1,3 +1,7 @@
+## 0.4:
+
+* Add support for EventSource.getURL() and EventSource.getWithCredentials() methods.
+
 ## 0.3:
 
 * Restore JDK 6 compatibility.

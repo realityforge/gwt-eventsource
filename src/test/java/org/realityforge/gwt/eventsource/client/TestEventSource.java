@@ -3,6 +3,7 @@ package org.realityforge.gwt.eventsource.client;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class TestEventSource
   extends EventSource
@@ -25,6 +26,19 @@ final class TestEventSource
   @Override
   public void connect( @Nonnull final String server )
   {
+  }
+
+  @Override
+  @Nonnull
+  public String getURL()
+  {
+    return "";
+  }
+
+  @Override
+  public boolean getWithCredentials()
+  {
+    return false;
   }
 
   @Override

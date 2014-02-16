@@ -4,6 +4,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.realityforge.gwt.eventsource.client.EventSource;
 
 public class Html5EventSource
@@ -57,8 +58,19 @@ public class Html5EventSource
   @Override
   public final ReadyState getReadyState()
   {
+  @Nonnull
+  @Override
+  public final String getURL()
+  {
     checkConnected();
-    return ReadyState.values()[ _eventSource.getReadyState() ];
+    return _eventSource.getURL();
+  }
+
+  @Override
+  public final boolean getWithCredentials()
+  {
+    checkConnected();
+    return _eventSource.getWithCredentials();
   }
 
   private void checkConnected()
@@ -101,6 +113,14 @@ public class Html5EventSource
     protected EventSourceImpl()
     {
     }
+
+    native String getURL() /*-{
+      return this.url;
+    }-*/;
+
+    native boolean getWithCredentials() /*-{
+      return this.withCredentials;
+    }-*/;
 
     native int getReadyState() /*-{
       return this.readyState;
