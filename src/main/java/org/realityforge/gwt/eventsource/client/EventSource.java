@@ -85,6 +85,7 @@ public abstract class EventSource
   public abstract boolean getWithCredentials()
     throws IllegalStateException;
 
+  @Nonnull
   public abstract ReadyState getReadyState();
 
   @Nonnull

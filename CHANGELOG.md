@@ -1,5 +1,6 @@
 ## 0.4:
 
+* Ensure EventSource.getReadyState() will always return a non null value (CLOSED if not connected).
 * Support a variant of EventSource.open() that sets withCredentials option.
 * Rename EventSource.connect() to EventSource.open() to match terminology of underlying construct.
 * Add support for EventSource.getURL() and EventSource.getWithCredentials() methods.

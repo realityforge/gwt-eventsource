@@ -55,9 +55,20 @@ public class Html5EventSource
     _eventSource = EventSourceImpl.create( this, url, withCredentials );
   }
 
+  @Nonnull
   @Override
   public final ReadyState getReadyState()
   {
+    if ( null == _eventSource )
+    {
+      return ReadyState.CLOSED;
+    }
+    else
+    {
+      return ReadyState.values()[ _eventSource.getReadyState() ];
+    }
+  }
+
   @Nonnull
   @Override
   public final String getURL()

@@ -46,9 +46,10 @@ final class TestEventSource
   {
   }
 
+  @Nonnull
   @Override
   public ReadyState getReadyState()
   {
-    return null;
+    return ReadyState.CLOSED;
   }
 }
