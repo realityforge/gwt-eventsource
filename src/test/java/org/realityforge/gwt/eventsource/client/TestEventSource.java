@@ -3,7 +3,6 @@ package org.realityforge.gwt.eventsource.client;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 final class TestEventSource
   extends EventSource
