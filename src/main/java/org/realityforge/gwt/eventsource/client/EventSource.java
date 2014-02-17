@@ -69,13 +69,16 @@ public abstract class EventSource
   }
 
   public final void open( @Nonnull final String url )
+    throws IllegalStateException
   {
     open( url, false );
   }
 
-  public abstract void open( @Nonnull String url, boolean withCredentials );
+  public abstract void open( @Nonnull String url, boolean withCredentials )
+    throws IllegalStateException;
 
-  public abstract void close();
+  public abstract void close()
+    throws IllegalStateException;
 
   @Nonnull
   public abstract String getURL()
