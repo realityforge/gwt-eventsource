@@ -115,7 +115,7 @@ public class Html5EventSource
                            } );
       eventSource.onmessage = $entry( function ( response )
                              {
-                               client.@org.realityforge.gwt.eventsource.client.EventSource::onMessage(Ljava/lang/String;)( response.data );
+                               client.@org.realityforge.gwt.eventsource.client.EventSource::onMessage(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)( response.lastEventId, response.type, response.data );
                              } );
       return eventSource;
     }-*/;

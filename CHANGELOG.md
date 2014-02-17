@@ -1,5 +1,7 @@
 ## 0.4:
 
+* Add getLastEventId() and getMessageType() methods to MessageEvent to expose underlying message
+  characteristics.
 * Ensure EventSource.getReadyState() will always return a non null value (CLOSED if not connected).
 * Support a variant of EventSource.open() that sets withCredentials option.
 * Rename EventSource.connect() to EventSource.open() to match terminology of underlying construct.

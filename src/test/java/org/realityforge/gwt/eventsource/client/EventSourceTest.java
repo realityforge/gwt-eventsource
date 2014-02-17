@@ -57,11 +57,11 @@ public class EventSourceTest
     {
       final MessageEvent.Handler handler = mock( MessageEvent.Handler.class );
       final HandlerRegistration registration = webSocket.addMessageHandler( handler );
-      webSocket.onMessage( "Blah" );
-      final MessageEvent expected = new MessageEvent( webSocket, "Blah" );
+      webSocket.onMessage( "0", "time", "Blah" );
+      final MessageEvent expected = new MessageEvent( webSocket, "0", "time", "Blah" );
       verify( handler, only() ).onMessageEvent( Mockito.<MessageEvent>refEq( expected, "source" ) );
       registration.removeHandler();
-      webSocket.onMessage( "Blah" );
+      webSocket.onMessage( "0", "time", "Blah" );
       verify( handler, atMost( 1 ) ).onMessageEvent( Mockito.<MessageEvent>anyObject() );
     }
 

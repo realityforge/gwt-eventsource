@@ -4,6 +4,7 @@ import com.google.gwt.core.shared.GWT;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.realityforge.gwt.eventsource.client.event.CloseEvent;
 import org.realityforge.gwt.eventsource.client.event.ErrorEvent;
 import org.realityforge.gwt.eventsource.client.event.MessageEvent;
@@ -133,9 +134,11 @@ public abstract class EventSource
   /**
    * Fire a Message event.
    */
-  protected final void onMessage( final String data )
+  protected final void onMessage( @Nullable final String lastEventId,
+                                  @Nonnull final String type,
+                                  @Nonnull final String data )
   {
-    _eventBus.fireEventFromSource( new MessageEvent( this, data ), this );
+    _eventBus.fireEventFromSource( new MessageEvent( this, lastEventId, type, data ), this );
   }
 
   /**
