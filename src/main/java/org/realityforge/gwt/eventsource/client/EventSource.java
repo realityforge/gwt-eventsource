@@ -88,6 +88,12 @@ public abstract class EventSource
   public abstract boolean getWithCredentials()
     throws IllegalStateException;
 
+  public abstract boolean subscribeTo( @Nonnull String messageType )
+    throws IllegalStateException;
+
+  public abstract boolean unsubscribeFrom( @Nonnull String messageType )
+    throws IllegalStateException;
+
   @Nonnull
   public abstract ReadyState getReadyState();
 

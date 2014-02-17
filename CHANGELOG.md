@@ -1,5 +1,7 @@
 ## 0.4:
 
+* Support subscription from and to multiple event types via subscribeTo and unsubscribeFrom methods
+  on EventSource.
 * Add getLastEventId() and getMessageType() methods to MessageEvent to expose underlying message
   characteristics.
 * Ensure EventSource.getReadyState() will always return a non null value (CLOSED if not connected).

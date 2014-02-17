@@ -29,6 +29,20 @@ final class TestEventSource
   }
 
   @Override
+  public boolean subscribeTo( @Nonnull final String messageType )
+    throws IllegalStateException
+  {
+    return false;
+  }
+
+  @Override
+  public boolean unsubscribeFrom( @Nonnull final String messageType )
+    throws IllegalStateException
+  {
+    return false;
+  }
+
+  @Override
   @Nonnull
   public String getURL()
   {
