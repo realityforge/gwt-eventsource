@@ -62,7 +62,7 @@ public abstract class EventSource
    */
   public static boolean isSupported()
   {
-    return ( null != g_factory ) || getSupportDetector().isSupported();
+    return ( null != g_factory ) || GWT.isClient() && getSupportDetector().isSupported();
   }
 
   /**
@@ -273,7 +273,7 @@ public abstract class EventSource
   {
     public boolean isSupported()
     {
-      return GWT.isClient() && Html5EventSource.isSupported();
+      return Html5EventSource.isSupported();
     }
 
     public Factory newFactory()
