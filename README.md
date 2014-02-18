@@ -14,7 +14,7 @@ into the build system. i.e.
 ```xml
 <dependency>
    <groupId>org.realityforge.gwt.eventsource</groupId>
-   <artifactId>gwt-websockets</artifactId>
+   <artifactId>gwt-eventsource</artifactId>
    <version>0.5</version>
    <scope>provided</scope>
 </dependency>
