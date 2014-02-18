@@ -54,6 +54,9 @@ if ( null != eventSource )
     }
   } );
   eventSource.connect( "http://example.com/someurl.ext" );
+  ...
+  // Optionally listen to messages on message type other than "message"
+  eventSource.subscribeTo( "someMessageType" );
 }
 ```
 
