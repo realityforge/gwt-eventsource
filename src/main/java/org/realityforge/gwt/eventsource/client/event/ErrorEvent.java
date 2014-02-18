@@ -6,7 +6,7 @@ import org.realityforge.gwt.eventsource.client.EventSource;
 import org.realityforge.gwt.eventsource.client.event.ErrorEvent.Handler;
 
 /**
- * Event fired when there is an error with the web socket.
+ * Event fired when there is an error with the EventSource.
  */
 public class ErrorEvent
   extends EventSourceEvent<Handler>

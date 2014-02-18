@@ -8,6 +8,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.realityforge.gwt.eventsource.client.EventSource;
 
+/**
+ * Implementation of EventSource based on the Html5 standard.
+ */
 public class Html5EventSource
   extends EventSource
 {
@@ -35,6 +38,9 @@ public class Html5EventSource
     super( eventBus );
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void close()
   {
@@ -51,6 +57,9 @@ public class Html5EventSource
     onClose();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void open( @Nonnull final String url, final boolean withCredentials )
   {
@@ -62,6 +71,9 @@ public class Html5EventSource
     _subscriptions = new HashSet<String>();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Nonnull
   @Override
   public final ReadyState getReadyState()
@@ -76,6 +88,9 @@ public class Html5EventSource
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public boolean subscribeTo( @Nonnull final String messageType )
     throws IllegalStateException
@@ -93,6 +108,9 @@ public class Html5EventSource
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public boolean unsubscribeFrom( @Nonnull final String messageType )
     throws IllegalStateException
@@ -108,6 +126,9 @@ public class Html5EventSource
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Nonnull
   @Override
   public final String getURL()
@@ -115,12 +136,19 @@ public class Html5EventSource
     return ensureEventSource().getURL();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public final boolean getWithCredentials()
   {
     return ensureEventSource().getWithCredentials();
   }
 
+  /**
+   * @return the underlying implementation.
+   * @throws IllegalStateException if no implementation is available as connection is not open.
+   */
   private EventSourceImpl ensureEventSource()
   {
     if ( null == _eventSource )
@@ -130,6 +158,10 @@ public class Html5EventSource
     return _eventSource;
   }
 
+  /**
+   * @return the set of event subscriptions.
+   * @throws IllegalStateException if no implementation is available as connection is not open.
+   */
   @Nonnull
   protected final HashSet<String> ensureSubscriptions()
   {

@@ -7,7 +7,7 @@ import org.realityforge.gwt.eventsource.client.EventSource;
 import org.realityforge.gwt.eventsource.client.event.OpenEvent.Handler;
 
 /**
- * Event fired when web socket successfully connects.
+ * Event fired when EventSource successfully opens.
  */
 public class OpenEvent
   extends EventSourceEvent<Handler>

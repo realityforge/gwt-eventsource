@@ -1,3 +1,7 @@
+## 0.5:
+
+* Improve the javadocs.
+
 ## 0.4:
 
 * Support subscription from and to multiple event types via subscribeTo and unsubscribeFrom methods

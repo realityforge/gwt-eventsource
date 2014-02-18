@@ -6,6 +6,9 @@ import javax.annotation.Nullable;
 import org.realityforge.gwt.eventsource.client.EventSource;
 import org.realityforge.gwt.eventsource.client.event.MessageEvent.Handler;
 
+/**
+ * Event fired when a message arrives on EventSource.
+ */
 public class MessageEvent
   extends EventSourceEvent<Handler>
 {

@@ -6,7 +6,7 @@ import org.realityforge.gwt.eventsource.client.EventSource;
 import org.realityforge.gwt.eventsource.client.event.CloseEvent.Handler;
 
 /**
- * Event fired when the web socket is closed.
+ * Event fired when the EventSource is closed.
  */
 public class CloseEvent
   extends EventSourceEvent<Handler>
