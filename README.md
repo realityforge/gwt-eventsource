@@ -53,7 +53,7 @@ if ( null != eventSource )
       //Handle message
     }
   } );
-  eventSource.connect( "someurl.ext" );
+  eventSource.connect( "http://example.com/someurl.ext" );
 }
 ```
 
