@@ -56,7 +56,7 @@ public class Html5EventSource
   {
     if ( null != _eventSource )
     {
-      throw new IllegalStateException( "EventSource already connected" );
+      throw new IllegalStateException( "EventSource already opened" );
     }
     _eventSource = EventSourceImpl.create( this, url, withCredentials );
     _subscriptions = new HashSet<String>();
