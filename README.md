@@ -26,12 +26,12 @@ Then you add the following snippet into the .gwt.xml file.
 <module rename-to='myapp'>
   ...
 
-  <!-- Enable the websocket library -->
+  <!-- Enable the eventsource library -->
   <inherits name="org.realityforge.gwt.eventsource.EventSource"/>
 </module>
 ```
 
-Then you can interact with the WebSocket from within the browser.
+Then you can interact with the EventSource from within the browser.
 
 ```java
 final EventSource eventSource = EventSource.newEventSourceIfSupported();
