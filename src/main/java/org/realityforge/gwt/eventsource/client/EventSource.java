@@ -9,7 +9,6 @@ import org.realityforge.gwt.eventsource.client.event.CloseEvent;
 import org.realityforge.gwt.eventsource.client.event.ErrorEvent;
 import org.realityforge.gwt.eventsource.client.event.MessageEvent;
 import org.realityforge.gwt.eventsource.client.event.OpenEvent;
-import org.realityforge.gwt.eventsource.client.html5.Html5EventSource;
 
 /**
  * Adapter class for the browser based EventSource.

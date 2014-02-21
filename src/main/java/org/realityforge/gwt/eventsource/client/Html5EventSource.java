@@ -1,4 +1,4 @@
-package org.realityforge.gwt.eventsource.client.html5;
+package org.realityforge.gwt.eventsource.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.web.bindery.event.shared.EventBus;
@@ -6,12 +6,11 @@ import com.google.web.bindery.event.shared.SimpleEventBus;
 import java.util.HashSet;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.realityforge.gwt.eventsource.client.EventSource;
 
 /**
  * Implementation of EventSource based on the Html5 standard.
  */
-public class Html5EventSource
+final class Html5EventSource
   extends EventSource
 {
   public static native boolean isSupported() /*-{
@@ -23,7 +22,7 @@ public class Html5EventSource
   @Nullable
   private HashSet<String> _subscriptions;
 
-  public static class Factory
+  static class Factory
     implements EventSource.Factory
   {
     @Override
@@ -33,7 +32,7 @@ public class Html5EventSource
     }
   }
 
-  public Html5EventSource( final EventBus eventBus )
+  Html5EventSource( final EventBus eventBus )
   {
     super( eventBus );
   }
@@ -186,7 +185,7 @@ public class Html5EventSource
                                       if ( eventSource.readyState == EventSource.CLOSED )
                                       {
                                         // Connection was closed.
-                                        client.@org.realityforge.gwt.eventsource.client.html5.Html5EventSource::doClose()();
+                                        client.@org.realityforge.gwt.eventsource.client.Html5EventSource::doClose()();
                                       }
                                       else
                                       {
