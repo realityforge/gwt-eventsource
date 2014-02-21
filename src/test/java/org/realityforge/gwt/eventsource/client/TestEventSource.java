@@ -4,7 +4,7 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import javax.annotation.Nonnull;
 
-final class TestEventSource
+public final class TestEventSource
   extends EventSource
 {
   static class Factory
@@ -17,7 +17,7 @@ final class TestEventSource
     }
   }
 
-  TestEventSource( final EventBus eventBus )
+  public TestEventSource( final EventBus eventBus )
   {
     super( eventBus );
   }
