@@ -13,13 +13,8 @@ public final class TestEventSource
     @Override
     public EventSource newEventSource()
     {
-      return new TestEventSource( new SimpleEventBus() );
+      return new TestEventSource();
     }
-  }
-
-  public TestEventSource( final EventBus eventBus )
-  {
-    super( eventBus );
   }
 
   @Override

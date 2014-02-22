@@ -1,8 +1,6 @@
 package org.realityforge.gwt.eventsource.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.web.bindery.event.shared.EventBus;
-import com.google.web.bindery.event.shared.SimpleEventBus;
 import java.util.HashSet;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -28,13 +26,8 @@ final class Html5EventSource
     @Override
     public EventSource newEventSource()
     {
-      return new Html5EventSource( new SimpleEventBus() );
+      return new Html5EventSource();
     }
-  }
-
-  Html5EventSource( final EventBus eventBus )
-  {
-    super( eventBus );
   }
 
   /**

@@ -1,6 +1,9 @@
 ## 0.5:
 
 * Improve the javadocs.
+* Move EventSource to using EventSourceListener interface as the primary means of notifying library
+  consumers of EventSource events. Add an EventBasedEventSourceListener to support the previous
+  event-oriented mechanisms of integrating with the EventSource library.
 
 ## 0.4:
 

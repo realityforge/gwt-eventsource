@@ -12,7 +12,7 @@ public class EventBasedEventSourceListenerTest
   public void handlerInteractions()
   {
     final EventBasedEventSourceListener listener = new EventBasedEventSourceListener( new SimpleEventBus() );
-    final TestEventSource eventSource = new TestEventSource( new SimpleEventBus() );
+    final TestEventSource eventSource = new TestEventSource();
 
     {
       final OpenEvent.Handler handler = mock( OpenEvent.Handler.class );

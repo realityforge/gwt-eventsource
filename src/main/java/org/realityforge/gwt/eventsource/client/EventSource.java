@@ -1,14 +1,8 @@
 package org.realityforge.gwt.eventsource.client;
 
 import com.google.gwt.core.shared.GWT;
-import com.google.web.bindery.event.shared.EventBus;
-import com.google.web.bindery.event.shared.HandlerRegistration;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.realityforge.gwt.eventsource.client.event.CloseEvent;
-import org.realityforge.gwt.eventsource.client.event.ErrorEvent;
-import org.realityforge.gwt.eventsource.client.event.MessageEvent;
-import org.realityforge.gwt.eventsource.client.event.OpenEvent;
 
 /**
  * Adapter class for the browser based EventSource.
@@ -37,7 +31,8 @@ public abstract class EventSource
 
   private static SupportDetector g_supportDetector;
   private static Factory g_factory;
-  private final EventBus _eventBus;
+  @Nonnull
+  private EventSourceListener _listener = NullEventSourceListener.INSTANCE;
 
   /**
    * Create an EventSource if supported by the platform.
@@ -94,16 +89,6 @@ public abstract class EventSource
       g_factory = null;
       return true;
     }
-  }
-
-  /**
-   * Construct a new EventSource.
-   *
-   * @param eventBus the EventBus to use.
-   */
-  protected EventSource( final EventBus eventBus )
-  {
-    _eventBus = eventBus;
   }
 
   /**
@@ -184,51 +169,24 @@ public abstract class EventSource
   public abstract ReadyState getReadyState();
 
   /**
-   * Add listener for open events.
+   * Return the listener associated with the EventSource.
    *
-   * @param handler the event handler.
-   * @return the HandlerRegistration that manages the listener.
+   * @return the listener associated with the EventSource.
    */
   @Nonnull
-  public final HandlerRegistration addOpenHandler( @Nonnull OpenEvent.Handler handler )
+  public final EventSourceListener getListener()
   {
-    return _eventBus.addHandler( OpenEvent.getType(), handler );
+    return _listener;
   }
 
   /**
-   * Add listener for close events.
+   * Set the listener to receive messages from the EventSource.
    *
-   * @param handler the event handler.
-   * @return the HandlerRegistration that manages the listener.
+   * @param listener the listener to receive messages from the EventSource.
    */
-  @Nonnull
-  public final HandlerRegistration addCloseHandler( @Nonnull CloseEvent.Handler handler )
+  public final void setListener( @Nullable final EventSourceListener listener )
   {
-    return _eventBus.addHandler( CloseEvent.getType(), handler );
-  }
-
-  /**
-   * Add listener for message events.
-   *
-   * @param handler the event handler.
-   * @return the HandlerRegistration that manages the listener.
-   */
-  @Nonnull
-  public final HandlerRegistration addMessageHandler( @Nonnull MessageEvent.Handler handler )
-  {
-    return _eventBus.addHandler( MessageEvent.getType(), handler );
-  }
-
-  /**
-   * Add listener for error events.
-   *
-   * @param handler the event handler.
-   * @return the HandlerRegistration that manages the listener.
-   */
-  @Nonnull
-  public final HandlerRegistration addErrorHandler( @Nonnull ErrorEvent.Handler handler )
-  {
-    return _eventBus.addHandler( ErrorEvent.getType(), handler );
+    _listener = null == listener ? NullEventSourceListener.INSTANCE : listener;
   }
 
   /**
@@ -236,7 +194,7 @@ public abstract class EventSource
    */
   protected final void onOpen()
   {
-    _eventBus.fireEventFromSource( new OpenEvent( this ), this );
+    getListener().onOpen( this );
   }
 
   /**
@@ -244,7 +202,7 @@ public abstract class EventSource
    */
   protected final void onClose()
   {
-    _eventBus.fireEventFromSource( new CloseEvent( this ), this );
+    getListener().onClose( this );
   }
 
   /**
@@ -254,7 +212,7 @@ public abstract class EventSource
                                   @Nonnull final String type,
                                   @Nonnull final String data )
   {
-    _eventBus.fireEventFromSource( new MessageEvent( this, lastEventId, type, data ), this );
+    getListener().onMessage( this, lastEventId, type, data );
   }
 
   /**
@@ -262,7 +220,7 @@ public abstract class EventSource
    */
   protected final void onError()
   {
-    _eventBus.fireEventFromSource( new ErrorEvent( this ), this );
+    getListener().onError( this );
   }
 
   /**

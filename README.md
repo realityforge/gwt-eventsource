@@ -37,22 +37,22 @@ Then you can interact with the EventSource from within the browser.
 final EventSource eventSource = EventSource.newEventSourceIfSupported();
 if ( null != eventSource )
 {
-  eventSource.addOpenHandler( new OpenEvent.Handler()
-  {
+  eventSource.setListener( new EventSourceListenerAdapter() {
     @Override
-    public void onOpenEvent( @Nonnull final OpenEvent event )
+    public void onOpen( @Nonnull final EventSource eventSource )
     {
       // Connected!
     }
-  } );
-  eventSource.addMessageHandler( new MessageEvent.Handler()
-  {
+
     @Override
-    public void onMessageEvent( @Nonnull final MessageEvent event )
+    public void onMessage( @Nonnull final EventSource eventSource,
+                           @Nullable final String lastEventId,
+                           @Nonnull final String type,
+                           @Nonnull final String data )
     {
       //Handle message
     }
-  } );
+  });
   eventSource.connect( "http://example.com/someurl.ext" );
   ...
   // Optionally listen to messages on message type other than "message"
