@@ -50,7 +50,7 @@ public class EventBasedEventSourceListenerTest
       final ErrorEvent.Handler handler = mock( ErrorEvent.Handler.class );
       final HandlerRegistration registration = listener.addErrorHandler( handler );
       listener.onError( eventSource );
-      verify( handler, only() ).onErrorEvent( refEq( new ErrorEvent( eventSource ) ) );
+      verify( handler, only() ).onErrorEvent( refEq( new ErrorEvent( eventSource ), "source" ) );
       registration.removeHandler();
       listener.onError( eventSource );
       verify( handler, atMost( 1 ) ).onErrorEvent( any( ErrorEvent.class ) );
