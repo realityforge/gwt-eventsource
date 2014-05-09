@@ -1,4 +1,5 @@
 require 'buildr/git_auto_version'
+require 'buildr/gpg'
 
 desc 'GWT EventSource Library'
 define 'gwt-eventsource' do
