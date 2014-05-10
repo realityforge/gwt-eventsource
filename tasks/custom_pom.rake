@@ -1,5 +1,5 @@
-module RealityForge
-  class Pom
+module Buildr
+  class CustomPom
     Developer = Struct.new(:id, :name, :email, :roles)
 
     attr_writer :name
@@ -168,7 +168,7 @@ module Buildr
   class Project #:nodoc:
     def pom
       unless @pom
-        @pom = parent ? parent.pom.dup : RealityForge::Pom.new
+        @pom = parent ? parent.pom.dup : Buildr::CustomPom.new
         @pom.send :associate_project, self
       end
       @pom
@@ -189,7 +189,7 @@ module Buildr
             spec = {:group => group, :id => id, :version => version, :type => :pom}
             @pom = Buildr.artifact(spec, pom_filename)
             buildr_project =  Buildr.project(self.scope.join(':'))
-            @pom.content RealityForge::Pom.pom_xml(buildr_project, self)
+            @pom.content Buildr::CustomPom.pom_xml(buildr_project, self)
           end
           @pom
         end
