@@ -12,7 +12,7 @@ define 'gwt-eventsource' do
 
   pom.add_apache2_license
   pom.add_github_project('realityforge/gwt-eventsource')
-  pom.add_developer('realityforge', "Peter Donald")
+  pom.add_developer('realityforge', 'Peter Donald')
   pom.provided_dependencies.concat [:javax_annotation, :gwt_user]
 
   compile.with :javax_annotation, :gwt_user
