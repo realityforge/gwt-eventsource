@@ -21,7 +21,7 @@ module RealityForge
     end
 
     def add_apache2_license
-      self.licenses["The Apache Software License, Version 2.0"] = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+      self.licenses['The Apache Software License, Version 2.0'] = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     end
 
     attr_accessor :scm_url
@@ -31,7 +31,7 @@ module RealityForge
     attr_accessor :issues_url
     attr_accessor :issues_system
 
-    # Add a project like add_github_project("realityforge/gwt-appcache")
+    # Add a project like add_github_project('realityforge/gwt-appcache')
     def add_github_project(project_spec)
       git_url = "git@github.com:#{project_spec}.git"
       self.scm_connection = self.scm_developer_connection = "scm:git:#{git_url}"
@@ -39,7 +39,7 @@ module RealityForge
       web_url = "https://github.com/#{project_spec}"
       self.url = web_url
       self.issues_url = "#{web_url}/issues"
-      self.issues_system = "GitHub Issues"
+      self.issues_system = 'GitHub Issues'
     end
 
     def developers
@@ -72,14 +72,14 @@ module RealityForge
       Proc.new do
         xml = Builder::XmlMarkup.new(:indent => 2)
         xml.instruct!
-        xml.project('xmlns' => "http://maven.apache.org/POM/4.0.0",
-                    'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-                    'xsi:schemaLocation' => "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd") do
+        xml.project('xmlns' => 'http://maven.apache.org/POM/4.0.0',
+                    'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
+                    'xsi:schemaLocation' => 'http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd') do
           xml.modelVersion '4.0.0'
           xml.parent do
-            xml.groupId "org.sonatype.oss"
-            xml.artifactId "oss-parent"
-            xml.version "7"
+            xml.groupId 'org.sonatype.oss'
+            xml.artifactId 'oss-parent'
+            xml.version '7'
           end
           xml.groupId project.group
           xml.artifactId project.id
@@ -142,9 +142,9 @@ module RealityForge
                 select{|d| d.is_a?(Artifact)}.
                 collect do |d|
                 f = d.to_s
-                scope = provided_deps.include?(f) ? "provided" :
-                  runtime_deps.include?(f) ? "runtime" :
-                  "compile"
+                scope = provided_deps.include?(f) ? 'provided' :
+                  runtime_deps.include?(f) ? 'runtime' :
+                  'compile'
                 d.to_hash.merge(:scope => scope, :optional => optional_deps.include?(f))
               end + Buildr.artifacts(project.test.compile.dependencies).
                 select{|d| d.is_a?(Artifact)}.collect{|d| d.to_hash.merge(:scope => 'test')}
@@ -153,7 +153,7 @@ module RealityForge
                 xml.groupId dependency[:group]
                 xml.artifactId dependency[:id]
                 xml.version dependency[:version]
-                xml.scope dependency[:scope] unless dependency[:scope] == "compile"
+                xml.scope dependency[:scope] unless dependency[:scope] == 'compile'
                 xml.optional true if dependency[:optional]
               end
             end
@@ -194,7 +194,7 @@ module Buildr
           @pom
         end
       end
-      package.instance_variable_set("@pom", nil)
+      package.instance_variable_set('@pom', nil)
       package.enhance([package.pom.to_s]) if package.type.to_s == 'jar' && !package.classifier
       package
     end
