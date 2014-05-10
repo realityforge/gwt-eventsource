@@ -134,20 +134,20 @@ module Buildr
           end
 
           xml.dependencies do
-            provided_deps = Buildr.artifacts(project.pom.provided_dependencies).collect{|d| d.to_s}
-            runtime_deps = Buildr.artifacts(project.pom.runtime_dependencies).collect{|d| d.to_s}
-            optional_deps = Buildr.artifacts(project.pom.optional_dependencies).collect{|d| d.to_s}
+            provided_deps = Buildr.artifacts(project.pom.provided_dependencies).collect { |d| d.to_s }
+            runtime_deps = Buildr.artifacts(project.pom.runtime_dependencies).collect { |d| d.to_s }
+            optional_deps = Buildr.artifacts(project.pom.optional_dependencies).collect { |d| d.to_s }
             deps =
               Buildr.artifacts(project.compile.dependencies).
-                select{|d| d.is_a?(Artifact)}.
+                select { |d| d.is_a?(Artifact) }.
                 collect do |d|
                 f = d.to_s
                 scope = provided_deps.include?(f) ? 'provided' :
                   runtime_deps.include?(f) ? 'runtime' :
-                  'compile'
+                    'compile'
                 d.to_hash.merge(:scope => scope, :optional => optional_deps.include?(f))
               end + Buildr.artifacts(project.test.compile.dependencies).
-                select{|d| d.is_a?(Artifact)}.collect{|d| d.to_hash.merge(:scope => 'test')}
+                select { |d| d.is_a?(Artifact) }.collect { |d| d.to_hash.merge(:scope => 'test') }
             deps.each do |dependency|
               xml.dependency do
                 xml.groupId dependency[:group]
@@ -188,7 +188,7 @@ module Buildr
             pom_filename = Util.replace_extension(name, 'pom')
             spec = {:group => group, :id => id, :version => version, :type => :pom}
             @pom = Buildr.artifact(spec, pom_filename)
-            buildr_project =  Buildr.project(self.scope.join(':'))
+            buildr_project = Buildr.project(self.scope.join(':'))
             @pom.content Buildr::CustomPom.pom_xml(buildr_project, self)
           end
           @pom
