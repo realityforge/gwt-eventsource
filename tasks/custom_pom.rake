@@ -1,3 +1,5 @@
+raise "Patch applied in latest version of buildr" if Buildr::VERSION >= '1.4.17'
+
 module Buildr
   class CustomPom
     Developer = Struct.new(:id, :name, :email, :roles)
