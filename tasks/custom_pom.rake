@@ -1,30 +1,93 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with this
+# work for additional information regarding copyright ownership.  The ASF
+# licenses this file to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+# License for the specific language governing permissions and limitations under
+# the License.
+
 raise "Patch applied in latest version of buildr" if Buildr::VERSION >= '1.4.17'
 
 module Buildr
   class CustomPom
     Developer = Struct.new(:id, :name, :email, :roles)
 
+    # Specify the name of the project
     attr_writer :name
 
+    # Retrieve the name of the project, defaulting to the project description or the name if not specified
     def name
       @name || @buildr_project.comment || @buildr_project.name
     end
 
+    # Specify a project description
     attr_writer :description
 
+    # Retrieve the project description, defaulting to the name if not specified
     def description
       @description || name
     end
 
+    # Property for the projects url
     attr_accessor :url
 
+    # Return the map of licenses for project
     def licenses
       @licenses ||= {}
     end
 
-    def add_apache2_license
+    # Add Apache2 to the list of licenses
+    def add_apache_v2_license
       self.licenses['The Apache Software License, Version 2.0'] = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     end
+
+    def add_bsd_2_license
+      self.licenses['The BSD 2-Clause License'] = 'http://opensource.org/licenses/BSD-2-Clause'
+    end
+
+    def add_bsd_3_license
+      self.licenses['The BSD 3-Clause License'] = 'http://opensource.org/licenses/BSD-3-Clause'
+    end
+
+    def add_cddl_v1_license
+      self.licenses['Common Development and Distribution License (CDDL-1.0)'] = 'http://opensource.org/licenses/CDDL-1.0'
+    end
+
+    def add_epl_v1_license
+      self.licenses['Eclipse Public License - v 1.0'] = 'http://www.eclipse.org/legal/epl-v10.html'
+    end
+
+    def add_gpl_v1_license
+      self.licenses['GNU General Public License (GPL) version 1.0'] = 'http://www.gnu.org/licenses/gpl-1.0.html'
+    end
+
+    def add_gpl_v2_license
+      self.licenses['GNU General Public License (GPL) version 2.0'] = 'http://www.gnu.org/licenses/gpl-2.0.html'
+    end
+
+    def add_gpl_v3_license
+      self.licenses['GNU General Public License (GPL) version 3.0'] = 'http://www.gnu.org/licenses/gpl-3.0.html'
+    end
+
+    def add_lgpl_v2_license
+      self.licenses['GNU General Lesser Public License (LGPL) version 2.1'] = 'http://www.gnu.org/licenses/lgpl-2.1.html'
+    end
+
+    def add_lgpl_v3_license
+      self.licenses['GNU General Lesser Public License (LGPL) version 3.0'] = 'http://www.gnu.org/licenses/lgpl-3.0.html'
+    end
+
+    def add_mit_license
+      self.licenses['The MIT License'] = 'http://opensource.org/licenses/MIT'
+    end
+
 
     attr_accessor :scm_url
     attr_accessor :scm_connection
@@ -56,12 +119,24 @@ module Buildr
       @provided_dependencies ||= []
     end
 
+    def provided_dependencies=(provided_dependencies)
+      @provided_dependencies = provided_dependencies
+    end
+
     def runtime_dependencies
       @runtime_dependencies ||= []
     end
 
+    def runtime_dependencies=(runtime_dependencies)
+      @runtime_dependencies = runtime_dependencies
+    end
+
     def optional_dependencies
       @optional_dependencies ||= []
+    end
+
+    def optional_dependencies=(optional_dependencies)
+      @optional_dependencies = optional_dependencies
     end
 
     protected
@@ -149,7 +224,7 @@ module Buildr
                     'compile'
                 d.to_hash.merge(:scope => scope, :optional => optional_deps.include?(f))
               end + Buildr.artifacts(project.test.compile.dependencies).
-                select { |d| d.is_a?(Artifact) }.collect { |d| d.to_hash.merge(:scope => 'test') }
+                select { |d| d.is_a?(Artifact) && !project.compile.dependencies.include?(d) }.collect { |d| d.to_hash.merge(:scope => 'test') }
             deps.each do |dependency|
               xml.dependency do
                 xml.groupId dependency[:group]
