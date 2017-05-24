@@ -5,8 +5,8 @@ require 'buildr/custom_pom'
 desc 'GWT EventSource Library'
 define 'gwt-eventsource' do
   project.group = 'org.realityforge.gwt.eventsource'
-  compile.options.source = '1.6'
-  compile.options.target = '1.6'
+  compile.options.source = '1.8'
+  compile.options.target = '1.8'
   compile.options.lint = 'all'
 
   project.version = ENV['PRODUCT_VERSION'] if ENV['PRODUCT_VERSION']
