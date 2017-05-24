@@ -1,13 +1,11 @@
-gwt-eventsource
----------------
+# gwt-eventsource
 
 [![Build Status](https://secure.travis-ci.org/realityforge/gwt-eventsource.png?branch=master)](http://travis-ci.org/realityforge/gwt-eventsource)
 [<img src="https://img.shields.io/maven-central/v/org.realityforge.gwt.eventsource/gwt-eventsource.svg?label=latest%20release"/>](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.realityforge.gwt.eventsource%22%20a%3A%22gwt-eventsource%22)
 
 A simple library to provide eventsource support to GWT.
 
-Quick Start
-===========
+## Quick Start
 
 The simplest way to use the library is to add the following dependency
 into the build system. i.e.
@@ -67,8 +65,7 @@ A very simple example of this code is available in the
 [gwt-eventsource-example](https://github.com/realityforge/gwt-eventsource-example)
 project.
 
-Appendix
---------
+## Appendix
 
 * [Mozilla Using server-sent events](https://developer.mozilla.org/en-US/docs/Server-sent_events/Using_server-sent_events)
 * [W3C: Server-Sent Events](http://dev.w3.org/html5/eventsource/)
