@@ -1,3 +1,11 @@
+# Deprecated
+
+> This project has been deprecated in favour of the EventSource support provided by
+> [Elemental2](https://github.com/google/elemental2). Elemental2 is closer to the
+> browser, future compatible and easier to maintain.
+
+---
+
 # gwt-eventsource
 
 [![Build Status](https://secure.travis-ci.org/realityforge/gwt-eventsource.svg?branch=master)](http://travis-ci.org/realityforge/gwt-eventsource)
